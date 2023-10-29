@@ -9,7 +9,7 @@
 	let defaultDarkMode = false;
 
 	onMount(() => {
-		darkTheme = window.matchMedia('(prefers-color-scheme: dark)')
+		darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
 	});
 
 	function toggleDarkMode() {
@@ -18,7 +18,6 @@
 </script>
 
 <svelte:head>
-
 	{#if darkTheme}
 		<link rel="stylesheet" href="/smui-dark.css" media="screen" />
 	{:else if !darkTheme}
@@ -39,8 +38,7 @@
 			<!-- 			<IconButton class="material-icons" aria-label="Download">file_download</IconButton>
 			<IconButton class="material-icons" aria-label="Print this page">print</IconButton>
 			<IconButton class="material-icons" aria-label="Bookmark this page">bookmark</IconButton> -->
-			<IconButton 
-			on:click={() => (darkTheme = !darkTheme)} toggle bind:pressed={defaultDarkMode}>
+			<IconButton on:click={() => (darkTheme = !darkTheme)} toggle bind:pressed={defaultDarkMode}>
 				<Icon class="material-icons" on>dark_mode</Icon>
 				<Icon class="material-icons">light_mode</Icon>
 			</IconButton>
@@ -62,7 +60,4 @@
 		position: static !important;
 	}
 
-	* :global(.myClass) {
-		font-style: italic;
-	}
 </style>
